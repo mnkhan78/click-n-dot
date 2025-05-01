@@ -6,8 +6,8 @@ let rmvArr = [];
 
 
 document.addEventListener('click', (e) => {
-    xcord.innerHTML = `x-cord: ${e.clientX}` //for x co-ordinate
-    ycord.innerHTML = `y-cord: ${e.clientY}` //for y co-ordinate
+    xcord.innerHTML = `x-cord: ${e.clientX}` //for finding x co-ordinate
+    ycord.innerHTML = `y-cord: ${e.clientY}` //for finding y co-ordinate
     
     if (e.target.tagName != 'BUTTON'){ //no dot on when we click on button
         
@@ -34,10 +34,10 @@ document.getElementById('rmv-btn').addEventListener ('click', function (e) {
 
     if (dotArr.length != 0){
         let lastEle = dotArr.pop()
+
         rmvArr.push(lastEle);
-        console.log(rmvArr);
         
-        document.body.removeChild(lastEle)
+        document.body.removeChild(lastEle) //to make it disappear
     } else {
         alert('No dot is present on Screen')
     }
@@ -46,7 +46,13 @@ document.getElementById('rmv-btn').addEventListener ('click', function (e) {
 
 //when we click on undo button
 document.getElementById('undo-btn').addEventListener('click', (e) => {
-    let lastEle = rmvArr.pop();
-    dotArr.push(lastEle)
-    document.body.appendChild(lastEle)
+    if (rmvArr.length != 0){
+        let lastEle = rmvArr.pop();
+
+        dotArr.push(lastEle)
+
+        document.body.appendChild(lastEle) //to make it re-appear
+    } else {
+        alert ('there is nothing to undo')
+    }
 })
